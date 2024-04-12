@@ -31,6 +31,7 @@ export class PersonService {
         (data: IRegisterPersonReturn | IRegisterPersonReturnBirthday) => {
           console.log(data);
           alert('Cadastro realizado com sucesso');
+          this.router.navigateByUrl('/');
         }
       );
   }
@@ -42,6 +43,7 @@ export class PersonService {
         this.personSignal.set(data.person);
         localStorage.setItem('@TokenIBS', data.token);
         localStorage.setItem('@PersonId', data.person.id);
+        this.router.navigateByUrl('/dashboard');
       });
   }
 
@@ -49,5 +51,6 @@ export class PersonService {
     this.personSignal.set(null);
     localStorage.removeItem('@TokenIBS');
     localStorage.removeItem('@PersonId');
+    this.router.navigateByUrl('/');
   }
 }
