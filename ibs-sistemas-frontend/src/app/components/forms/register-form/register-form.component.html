@@ -7,11 +7,11 @@
     <div>
       <input type="text" placeholder="Nome:" formControlName="name" />
       <p
-        *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.value!==null"
+        *ngIf="errors.name?.['required'] && registerForm.get('name')?.value!==null"
       >
         O nome é obrigatório!
       </p>
-      <p *ngIf="registerForm.get('name')?.errors?.['maxlength']">
+      <p *ngIf="errors.name?.['maxlength']">
         O nome pode ter no máximo 80 caracteres!
       </p>
     </div>
@@ -20,11 +20,11 @@
     <div>
       <input type="email" placeholder="E-mail" formControlName="email" />
       <p
-        *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.value!==null"
+        *ngIf="errors.email?.['required'] && registerForm.get('email')?.value!==null"
       >
         O e-mail é obrigatório!
       </p>
-      <p *ngIf="registerForm.get('email')?.errors?.['email']">
+      <p *ngIf="errors.email?.['email']">
         Forneça um formato de e-mail válido!
       </p>
     </div>
@@ -33,14 +33,14 @@
     <div>
       <input type="password" placeholder="Senha:" formControlName="password" />
       <p
-        *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.value!==null"
+        *ngIf="errors.password?.['required'] && registerForm.get('password')?.value!==null"
       >
         A senha é obrigatória
       </p>
-      <p *ngIf="registerForm.get('password')?.errors?.['minlength']">
+      <p *ngIf="errors.password?.['minlength']">
         A senha precisa ter no mínimo 8 caracteres
       </p>
-      <p *ngIf="registerForm.get('password')?.errors?.['pattern']">
+      <p *ngIf="errors.password?.['pattern']">
         A senha precisa conter pelo menos uma letra maiúscula, uma letra
         minúscula, um número e um caractere especial
       </p>
@@ -54,9 +54,7 @@
         <option value="Female">Feminino</option>
         <option value="Other">Outro</option>
       </select>
-      <p
-        *ngIf="registerForm.get('sex')?.errors?.['required'] && registerForm.get('sex')?.touched"
-      >
+      <p *ngIf="errors.sex?.['required'] && registerForm.get('sex')?.touched">
         Informar o sexo é obrigatório!
       </p>
     </div>
@@ -65,16 +63,16 @@
     <div>
       <input
         type="text"
-        placeholder="ex:DD/MM/AAAA"
+        placeholder="Data de nascimento:"
         formControlName="birthDate"
       />
     </div>
     <p
-      *ngIf="registerForm.get('birthDate')?.errors?.['required'] && registerForm.get('birthDate')?.value!==null"
+      *ngIf="errors.birthDate?.['required'] && registerForm.get('birthDate')?.value!==null"
     >
       Informar a data de nascimento é obrigatório
     </p>
-    <p *ngIf="registerForm.get('birthDate')?.errors?.['pattern']">
+    <p *ngIf="errors.birthDate?.['pattern']">
       A data precisa ter o formato DD/MM/AAAA !
     </p>
   </div>
@@ -88,7 +86,7 @@
         <option value="Widower">Viúvo(a)</option>
       </select>
       <p
-        *ngIf="registerForm.get('civilState')?.errors?.['required'] && registerForm.get('civilState')?.touched"
+        *ngIf="errors.civilState?.['required'] && registerForm.get('civilState')?.touched"
       >
         Informar o seu estado cívil é obrigatório
       </p>
