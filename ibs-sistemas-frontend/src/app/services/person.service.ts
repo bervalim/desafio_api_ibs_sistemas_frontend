@@ -1,6 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { PersonRequest } from '../api/person.request';
-import { TRegisterBodyRequest } from '../interfaces/person.interface';
+import {
+  ILoginPersonReturn,
+  IPerson,
+  IRegisterPersonReturn,
+  IRegisterPersonReturnBirthday,
+  TLoginBodyRequest,
+  TLoginPersonObject,
+  TPersonReturn,
+  TRegisterBodyRequest,
+} from '../interfaces/person.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +17,26 @@ import { TRegisterBodyRequest } from '../interfaces/person.interface';
 export class PersonService {
   constructor(private personRequest: PersonRequest) {}
 
+  readonly personSignal = signal<TLoginPersonObject | null>(null);
+
   registerPeopleService(formData: TRegisterBodyRequest) {
-    this.personRequest.registerPeopleRequest(formData).subscribe((data) => {
-      console.log(data);
-      alert('Cadastro realizado com sucesso');
-    });
+    this.personRequest
+      .registerPeopleRequest(formData)
+      .subscribe(
+        (data: IRegisterPersonReturn | IRegisterPersonReturnBirthday) => {
+          console.log(data);
+          alert('Cadastro realizado com sucesso');
+        }
+      );
+  }
+
+  loginPeopleService(formData: TLoginBodyRequest) {
+    this.personRequest
+      .loginPeopleRequest(formData)
+      .subscribe((data: ILoginPersonReturn) => {
+        this.personSignal.set(data.person);
+        localStorage.setItem('@TokenIBS', data.token);
+        localStorage.setItem('@PersonId', data.person.id);
+      });
   }
 }
