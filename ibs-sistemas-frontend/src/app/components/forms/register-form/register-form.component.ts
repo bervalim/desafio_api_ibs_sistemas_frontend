@@ -18,13 +18,11 @@ export class RegisterFormComponent {
   registerForm = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
-      Validators.minLength(3),
       Validators.maxLength(80),
     ]),
     email: new FormControl(null, [
       Validators.required,
       Validators.email,
-      Validators.minLength(3),
       Validators.maxLength(45),
     ]),
     password: new FormControl(null, [

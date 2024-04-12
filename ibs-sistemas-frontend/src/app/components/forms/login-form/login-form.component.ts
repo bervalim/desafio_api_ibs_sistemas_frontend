@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,8 +16,8 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginFormComponent {
   loginForm = new FormGroup({
-    email: new FormControl(null),
-    password: new FormControl(null),
+    email: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
   });
 
   submit() {
