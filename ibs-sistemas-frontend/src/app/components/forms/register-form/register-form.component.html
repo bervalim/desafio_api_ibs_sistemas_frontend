@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm">
+<form (ngSubmit)="submit()" [formGroup]="registerForm">
   <div>
     <h3>Cadastre-se</h3>
     <a routerLink="/">Arrow</a>
@@ -57,7 +57,7 @@
     <label for="civilState">Informe o seu estado cívil:</label>
     <div>
       <select name="civilState" id="civilState" formControlName="civilState">
-        <option value="">Informe o seu estado cívil:</option>
+        <option value="">Estado cívil:</option>
         <option value="Married">Casado(a)</option>
         <option value="Single">Solteiro(a)</option>
         <option value="Divorced">Divorciado(a)</option>

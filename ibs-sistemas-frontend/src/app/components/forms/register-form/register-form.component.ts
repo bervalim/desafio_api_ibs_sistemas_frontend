@@ -18,4 +18,9 @@ export class RegisterFormComponent {
     birthDate: new FormControl(null),
     civilState: new FormControl(null),
   });
+
+  submit() {
+    const data = this.registerForm.value;
+    console.log(data);
+  }
 }

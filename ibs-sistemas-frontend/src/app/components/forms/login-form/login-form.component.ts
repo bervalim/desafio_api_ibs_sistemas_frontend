@@ -14,4 +14,9 @@ export class LoginFormComponent {
     email: new FormControl(null),
     password: new FormControl(null),
   });
+
+  submit() {
+    const data = this.loginForm.value;
+    console.log(data);
+  }
 }
