@@ -23,7 +23,7 @@ export class PersonService {
       },
       error: (error) => {
         console.log(error);
-        this;
+        this.logoutPeopleService();
       },
     });
   }
