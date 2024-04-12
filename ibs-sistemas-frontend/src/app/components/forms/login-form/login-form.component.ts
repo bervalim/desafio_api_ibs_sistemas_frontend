@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { PersonService } from '../../../services/person.service';
+import { TLoginBodyRequest } from '../../../interfaces/person.interface';
 
 @Component({
   selector: 'app-login-form',
@@ -16,9 +18,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
+  constructor(private personService: PersonService) {}
+
   loginForm = new FormGroup({
-    email: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.required]),
+    password: new FormControl<string | null>(null, [Validators.required]),
   });
 
   get errors() {
@@ -28,8 +32,11 @@ export class LoginFormComponent {
     };
   }
 
-  submit() {
-    const data = this.loginForm.value;
-    console.log(data);
+  submitLoginForm() {
+    if (this.loginForm.status === 'VALID') {
+      const data = this.loginForm.value as TLoginBodyRequest;
+      this.personService.loginPeopleService(data);
+      this.loginForm.reset();
+    }
   }
 }

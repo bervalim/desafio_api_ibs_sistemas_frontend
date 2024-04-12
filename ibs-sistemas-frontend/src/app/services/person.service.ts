@@ -29,6 +29,10 @@ export class PersonService {
     });
   }
 
+  getPerson() {
+    return this.personSignal();
+  }
+
   registerPeopleService(formData: TRegisterBodyRequest) {
     this.personRequest.registerPeopleRequest(formData).subscribe({
       next: (data: IRegisterPersonReturn | IRegisterPersonReturnBirthday) => {
@@ -57,6 +61,11 @@ export class PersonService {
       },
       error: (error) => {
         console.log(error);
+        if (error instanceof HttpErrorResponse) {
+          if (error.error.message === 'Invalid email or password') {
+            alert('Senha ou e-mail inválidos');
+          }
+        }
       },
     });
   }
