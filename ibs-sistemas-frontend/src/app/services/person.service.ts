@@ -9,6 +9,7 @@ import {
   TRegisterBodyRequest,
 } from '../interfaces/person.interface';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,11 @@ export class PersonService {
       },
       error: (error) => {
         console.log(error);
+        if (error instanceof HttpErrorResponse) {
+          if (error.error.message === 'Email already exists') {
+            alert('Já existe um usuário cadastrado com este e-mail!');
+          }
+        }
       },
     });
   }

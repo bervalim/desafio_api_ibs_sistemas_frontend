@@ -57,8 +57,10 @@ export class RegisterFormComponent {
   }
 
   submitRegisterForm() {
-    const data = this.registerForm.value as TRegisterBodyRequest;
-    this.personService.registerPeopleService(data);
-    this.registerForm.reset();
+    if (this.registerForm.status == 'VALID') {
+      const data = this.registerForm.value as TRegisterBodyRequest;
+      this.personService.registerPeopleService(data);
+      this.registerForm.reset();
+    }
   }
 }
