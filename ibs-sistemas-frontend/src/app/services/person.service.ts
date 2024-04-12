@@ -5,17 +5,24 @@ import {
   IRegisterPersonReturn,
   IRegisterPersonReturnBirthday,
   TLoginBodyRequest,
-  TLoginPersonObject,
+  TPersonReturn,
   TRegisterBodyRequest,
 } from '../interfaces/person.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonService {
-  constructor(private personRequest: PersonRequest) {}
+  readonly personSignal = signal<TPersonReturn | null>(null);
 
-  readonly personSignal = signal<TLoginPersonObject | null>(null);
+  constructor(private personRequest: PersonRequest, private router: Router) {
+    this.personRequest
+      .autoLoginPeopleRequest()
+      ?.subscribe((data: TPersonReturn) => {
+        this.personSignal.set(data);
+      });
+  }
 
   registerPeopleService(formData: TRegisterBodyRequest) {
     this.personRequest
