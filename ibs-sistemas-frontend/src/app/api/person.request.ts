@@ -16,20 +16,20 @@ export class PersonRequest {
 
   constructor(private http: HttpClient) {}
 
-  registerPeople(formData: TRegisterBodyRequest) {
+  registerPeopleRequest(formData: TRegisterBodyRequest) {
     return this.http.post<
       IRegisterPersonReturn | IRegisterPersonReturnBirthday
     >(`${this.BASE_URL}/people`, formData);
   }
 
-  loginPeople(formData: TLoginBodyRequest) {
+  loginPeopleRequest(formData: TLoginBodyRequest) {
     return this.http.post<ILoginPersonReturn>(
       `${this.BASE_URL}/login`,
       formData
     );
   }
 
-  autoLoginPeople() {
+  autoLoginPeopleRequest() {
     const getToken = localStorage.getItem('@TokenIBS');
     const getPersonId = localStorage.getItem('@PersonId');
 
