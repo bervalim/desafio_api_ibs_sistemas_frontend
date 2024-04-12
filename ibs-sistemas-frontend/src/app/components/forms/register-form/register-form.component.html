@@ -1,1 +1,39 @@
-<p>register-form works!</p>
+<form>
+  <div>
+    <h3>Cadastre-se</h3>
+    <span>Arrow</span>
+  </div>
+  <div>
+    <label for="name">Informe o seu nome:</label>
+    <input type="text" placeholder="Nome:" id="name" />
+  </div>
+  <div>
+    <label for="email">Crie o seu e-mail:</label>
+    <input type="email" placeholder="E-mail" id="email" />
+  </div>
+  <div>
+    <label for="password">Crie sua senha:</label>
+    <input type="password" placeholder="Senha:" id="password" />
+  </div>
+  <div>
+    <select name="sex" id="type">
+      <option value="">Informe o seu sexo:</option>
+      <option value="Male">Masculino</option>
+      <option value="Female">Feminino</option>
+      <option value="Other">Outro</option>
+    </select>
+  </div>
+  <div>
+    <label for="birthdate">Data de nascimento:</label>
+    <input type="text" placeholder="ex:DD/MM/AAAA" id="birthdate" />
+  </div>
+  <div>
+    <select name="civilState" id="civilState">
+      <option value="">Informe o seu estado cívil:</option>
+      <option value="Married">Casado(a)</option>
+      <option value="Single">Solteiro(a)</option>
+      <option value="Divorced">Divorciado(a)</option>
+    </select>
+  </div>
+  <button type="submit">Cadastrar-se</button>
+</form>
