@@ -2,12 +2,10 @@ import { Injectable, signal } from '@angular/core';
 import { PersonRequest } from '../api/person.request';
 import {
   ILoginPersonReturn,
-  IPerson,
   IRegisterPersonReturn,
   IRegisterPersonReturnBirthday,
   TLoginBodyRequest,
   TLoginPersonObject,
-  TPersonReturn,
   TRegisterBodyRequest,
 } from '../interfaces/person.interface';
 
@@ -38,5 +36,11 @@ export class PersonService {
         localStorage.setItem('@TokenIBS', data.token);
         localStorage.setItem('@PersonId', data.person.id);
       });
+  }
+
+  logoutPeopleService() {
+    this.personSignal.set(null);
+    localStorage.removeItem('@TokenIBS');
+    localStorage.removeItem('@PersonId');
   }
 }
