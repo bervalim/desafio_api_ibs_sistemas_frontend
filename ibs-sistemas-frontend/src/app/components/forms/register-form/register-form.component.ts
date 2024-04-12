@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
-  registerForm = new FormControl({
+  registerForm = new FormGroup({
     name: new FormControl(null),
     email: new FormControl(null),
     password: new FormControl(null),

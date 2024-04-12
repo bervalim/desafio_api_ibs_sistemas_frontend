@@ -32,12 +32,15 @@
     </div>
   </div>
   <div>
-    <select name="sex" id="type" formControlName="sex">
-      <option value="">Informe o seu sexo:</option>
-      <option value="Male">Masculino</option>
-      <option value="Female">Feminino</option>
-      <option value="Other">Outro</option>
-    </select>
+    <label for="sex">Informe o seu sexo:</label>
+    <div>
+      <select name="sex" id="sex" formControlName="sex">
+        <option value="">Sexo:</option>
+        <option value="Male">Masculino</option>
+        <option value="Female">Feminino</option>
+        <option value="Other">Outro</option>
+      </select>
+    </div>
   </div>
   <div>
     <label for="birthdate">Data de nascimento:</label>
@@ -51,12 +54,15 @@
     </div>
   </div>
   <div>
-    <select name="civilState" id="civilState" formControlName="civilState">
-      <option value="">Informe o seu estado cívil:</option>
-      <option value="Married">Casado(a)</option>
-      <option value="Single">Solteiro(a)</option>
-      <option value="Divorced">Divorciado(a)</option>
-    </select>
+    <label for="civilState">Informe o seu estado cívil:</label>
+    <div>
+      <select name="civilState" id="civilState" formControlName="civilState">
+        <option value="">Informe o seu estado cívil:</option>
+        <option value="Married">Casado(a)</option>
+        <option value="Single">Solteiro(a)</option>
+        <option value="Divorced">Divorciado(a)</option>
+      </select>
+    </div>
   </div>
   <button type="submit">Cadastrar-se</button>
 </form>
