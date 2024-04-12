@@ -1,25 +1,23 @@
 <form (ngSubmit)="submit()" [formGroup]="loginForm">
   <h3>Faça Login</h3>
   <div>
-    <label for="email">Insira o seu e-mail:</label>
     <div>
-      <input
-        type="email"
-        placeholder="E-mail:"
-        id="email"
-        formControlName="email"
-      />
+      <input type="email" placeholder="E-mail:" formControlName="email" />
+      <p
+        *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.value!==null"
+      >
+        O e-mail é obrigatório!
+      </p>
     </div>
   </div>
   <div>
-    <label for="password">Insira a sua senha:</label>
     <div>
-      <input
-        type="password"
-        placeholder="Senha:"
-        id="password"
-        formControlName="password"
-      />
+      <input type="password" placeholder="Senha:" formControlName="password" />
+      <p
+        *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.value!==null"
+      >
+        A senha é obrigatória
+      </p>
     </div>
   </div>
   <button type="submit">Entrar</button>
