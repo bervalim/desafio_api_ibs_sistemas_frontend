@@ -5,6 +5,7 @@ import {
   IRegisterPersonReturn,
   IRegisterPersonReturnBirthday,
   TLoginBodyRequest,
+  TPersonReturn,
   TRegisterBodyRequest,
 } from '../interfaces/person.interface';
 
@@ -16,20 +17,20 @@ export class PersonRequest {
 
   constructor(private http: HttpClient) {}
 
-  registerPeople(formData: TRegisterBodyRequest) {
+  registerPeopleRequest(formData: TRegisterBodyRequest) {
     return this.http.post<
       IRegisterPersonReturn | IRegisterPersonReturnBirthday
     >(`${this.BASE_URL}/people`, formData);
   }
 
-  loginPeople(formData: TLoginBodyRequest) {
+  loginPeopleRequest(formData: TLoginBodyRequest) {
     return this.http.post<ILoginPersonReturn>(
       `${this.BASE_URL}/login`,
       formData
     );
   }
 
-  autoLoginPeople() {
+  autoLoginPeopleRequest() {
     const getToken = localStorage.getItem('@TokenIBS');
     const getPersonId = localStorage.getItem('@PersonId');
 
@@ -37,11 +38,14 @@ export class PersonRequest {
       const parsedToken = JSON.parse(getToken);
       const parsedId = JSON.parse(getPersonId);
 
-      return this.http.get(`${this.BASE_URL}/people/${parsedId}`, {
-        headers: {
-          Authorization: `Bearer ${parsedToken}`,
-        },
-      });
+      return this.http.get<TPersonReturn>(
+        `${this.BASE_URL}/people/${parsedId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${parsedToken}`,
+          },
+        }
+      );
     } else {
       return null;
     }

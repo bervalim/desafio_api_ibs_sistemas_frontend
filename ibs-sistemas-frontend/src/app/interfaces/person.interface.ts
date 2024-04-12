@@ -19,8 +19,6 @@ export interface IPersonData {
 
 export type TPersonReturn = Omit<IPerson, 'password'>;
 
-export type TLoginPersonObject = Pick<IPerson, 'name' | 'email' | 'id'>;
-
 export type TRegisterBodyRequest = Omit<IPersonData, 'id'>;
 
 export type TLoginBodyRequest = Pick<IPersonData, 'email' | 'password'>;
@@ -38,5 +36,5 @@ export interface IRegisterPersonReturnBirthday {
 
 export interface ILoginPersonReturn {
   token: string;
-  person: TLoginPersonObject;
+  person: TPersonReturn;
 }
