@@ -1,3 +1,19 @@
 import { Routes } from '@angular/router';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    component: HomePageComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterPageComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardPageComponent,
+  },
+];
