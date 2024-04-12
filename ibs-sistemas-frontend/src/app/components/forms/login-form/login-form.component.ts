@@ -21,6 +21,13 @@ export class LoginFormComponent {
     password: new FormControl(null, [Validators.required]),
   });
 
+  get errors() {
+    return {
+      email: this.loginForm.get('email')?.errors,
+      password: this.loginForm.get('password')?.errors,
+    };
+  }
+
   submit() {
     const data = this.loginForm.value;
     console.log(data);

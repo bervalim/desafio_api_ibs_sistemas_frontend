@@ -4,7 +4,7 @@
     <div>
       <input type="email" placeholder="E-mail:" formControlName="email" />
       <p
-        *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.value!==null"
+        *ngIf="errors.email?.['required'] && loginForm.get('email')?.value!==null"
       >
         O e-mail é obrigatório!
       </p>
@@ -14,7 +14,7 @@
     <div>
       <input type="password" placeholder="Senha:" formControlName="password" />
       <p
-        *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.value!==null"
+        *ngIf="errors.password.['required'] && loginForm.get('password')?.value!==null"
       >
         A senha é obrigatória
       </p>
