@@ -1,28 +1,38 @@
-<form>
+<form [formGroup]="registerForm">
   <div>
     <h3>Cadastre-se</h3>
-    <span>Arrow</span>
+    <a routerLink="/">Arrow</a>
   </div>
   <div>
     <label for="name">Informe o seu nome:</label>
     <div>
-      <input type="text" placeholder="Nome:" id="name" />
+      <input type="text" placeholder="Nome:" id="name" formControlName="name" />
     </div>
   </div>
   <div>
     <label for="email">Crie o seu e-mail:</label>
     <div>
-      <input type="email" placeholder="E-mail" id="email" />
+      <input
+        type="email"
+        placeholder="E-mail"
+        id="email"
+        formControlName="email"
+      />
     </div>
   </div>
   <div>
     <label for="password">Crie sua senha:</label>
     <div>
-      <input type="password" placeholder="Senha:" id="password" />
+      <input
+        type="password"
+        placeholder="Senha:"
+        id="password"
+        formControlName="password"
+      />
     </div>
   </div>
   <div>
-    <select name="sex" id="type">
+    <select name="sex" id="type" formControlName="sex">
       <option value="">Informe o seu sexo:</option>
       <option value="Male">Masculino</option>
       <option value="Female">Feminino</option>
@@ -32,11 +42,16 @@
   <div>
     <label for="birthdate">Data de nascimento:</label>
     <div>
-      <input type="text" placeholder="ex:DD/MM/AAAA" id="birthdate" />
+      <input
+        type="text"
+        placeholder="ex:DD/MM/AAAA"
+        id="birthdate"
+        formControlName="birthDate"
+      />
     </div>
   </div>
   <div>
-    <select name="civilState" id="civilState">
+    <select name="civilState" id="civilState" formControlName="civilState">
       <option value="">Informe o seu estado cívil:</option>
       <option value="Married">Casado(a)</option>
       <option value="Single">Solteiro(a)</option>
