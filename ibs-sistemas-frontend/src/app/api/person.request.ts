@@ -28,4 +28,22 @@ export class PersonRequest {
       formData
     );
   }
+
+  autoLoginPeople() {
+    const getToken = localStorage.getItem('@TokenIBS');
+    const getPersonId = localStorage.getItem('@PersonId');
+
+    if (getToken && getPersonId) {
+      const parsedToken = JSON.parse(getToken);
+      const parsedId = JSON.parse(getPersonId);
+
+      return this.http.get(`${this.BASE_URL}/people/${parsedId}`, {
+        headers: {
+          Authorization: `Bearer ${parsedToken}`,
+        },
+      });
+    } else {
+      return null;
+    }
+  }
 }
