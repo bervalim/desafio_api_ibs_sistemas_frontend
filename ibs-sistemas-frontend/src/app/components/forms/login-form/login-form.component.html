@@ -1,1 +1,28 @@
-<p>login-form works!</p>
+<form (ngSubmit)="submit()" [formGroup]="loginForm">
+  <div>
+    <label for="email">Insira o seu e-mail:</label>
+    <div>
+      <input
+        type="email"
+        placeholder="E-mail:"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+  </div>
+  <div>
+    <label for="password">Insira a sua senha:</label>
+    <div>
+      <input
+        type="password"
+        placeholder="Senha:"
+        id="password"
+        formControlName="password"
+      />
+    </div>
+  </div>
+  <button type="submit">Entrar</button>
+  <div>
+    <p>Não possui cadastro? <a routerLink="/register">Cadastre-se</a></p>
+  </div>
+</form>

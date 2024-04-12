@@ -1,45 +1,68 @@
-<form>
+<form (ngSubmit)="submit()" [formGroup]="registerForm">
   <div>
     <h3>Cadastre-se</h3>
-    <span>Arrow</span>
+    <a routerLink="/">Arrow</a>
   </div>
   <div>
     <label for="name">Informe o seu nome:</label>
     <div>
-      <input type="text" placeholder="Nome:" id="name" />
+      <input type="text" placeholder="Nome:" id="name" formControlName="name" />
     </div>
   </div>
   <div>
     <label for="email">Crie o seu e-mail:</label>
-    <div><input type="email" placeholder=p"E-mail" id="email" /></div>
+    <div>
+      <input
+        type="email"
+        placeholder="E-mail"
+        id="email"
+        formControlName="email"
+      />
+    </div>
   </div>
   <div>
     <label for="password">Crie sua senha:</label>
     <div>
-      <input type="password" placeholder="Senha:" id="password" />
+      <input
+        type="password"
+        placeholder="Senha:"
+        id="password"
+        formControlName="password"
+      />
     </div>
   </div>
   <div>
-    <select name="sex" id="type">
-      <option value="">Informe o seu sexo:</option>
-      <option value="Male">Masculino</option>
-      <option value="Female">Feminino</option>
-      <option value="Other">Outro</option>
-    </select>
+    <label for="sex">Informe o seu sexo:</label>
+    <div>
+      <select name="sex" id="sex" formControlName="sex">
+        <option value="">Sexo:</option>
+        <option value="Male">Masculino</option>
+        <option value="Female">Feminino</option>
+        <option value="Other">Outro</option>
+      </select>
+    </div>
   </div>
   <div>
     <label for="birthdate">Data de nascimento:</label>
     <div>
-      <input type="text" placeholder="ex:DD/MM/AAAA" id="birthdate" />
+      <input
+        type="text"
+        placeholder="ex:DD/MM/AAAA"
+        id="birthdate"
+        formControlName="birthDate"
+      />
     </div>
   </div>
   <div>
-    <select name="civilState" id="civilState">
-      <option value="">Informe o seu estado cívil:</option>
-      <option value="Married">Casado(a)</option>
-      <option value="Single">Solteiro(a)</option>
-      <option value="Divorced">Divorciado(a)</option>
-    </select>
+    <label for="civilState">Informe o seu estado cívil:</label>
+    <div>
+      <select name="civilState" id="civilState" formControlName="civilState">
+        <option value="">Estado cívil:</option>
+        <option value="Married">Casado(a)</option>
+        <option value="Single">Solteiro(a)</option>
+        <option value="Divorced">Divorciado(a)</option>
+      </select>
+    </div>
   </div>
   <button type="submit">Cadastrar-se</button>
 </form>
