@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { publicRoutes } from '../app.routes';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,11 @@ import { publicRoutes } from '../app.routes';
 export class PersonService {
   readonly personSignal = signal<TPersonReturn | null>(null);
 
-  constructor(private personRequest: PersonRequest, private router: Router) {
+  constructor(
+    private personRequest: PersonRequest,
+    private router: Router,
+    private toastr: ToastrService
+  ) {
     const pathname = window.location.pathname;
     this.personRequest.autoLoginPeopleRequest()?.subscribe({
       next: (data: TPersonReturn) => {
@@ -51,11 +56,11 @@ export class PersonService {
           .padStart(2, '0')}`;
         const formattedBirthDate = data.person.birthDate.substring(0, 5);
         if (formattedBirthDate === formattedToday) {
-          alert(
+          this.toastr.success(
             `${data.message}.É incrível que você faça parte de nossa história`
           );
         } else {
-          alert(
+          this.toastr.success(
             `Você tem ${data.age} anos e faltam ${data.daysUntilNextBirthday} dias para podermos comemorar o seu aniversário`
           );
         }
@@ -64,7 +69,9 @@ export class PersonService {
       error: (error) => {
         if (error instanceof HttpErrorResponse) {
           if (error.error.message === 'Email already exists') {
-            alert('Já existe um usuário cadastrado com este e-mail!');
+            this.toastr.error(
+              'Já existe um usuário cadastrado com este e-mail'!
+            );
           }
         }
       },
@@ -77,12 +84,13 @@ export class PersonService {
         this.personSignal.set(data.person);
         localStorage.setItem('@TokenIBS', data.token);
         localStorage.setItem('@PersonId', data.person.id);
+        this.toastr.success(`Seja bem-vindo,${data.person.name}`);
         this.router.navigateByUrl('/dashboard');
       },
       error: (error) => {
         if (error instanceof HttpErrorResponse) {
           if (error.error.message === 'Invalid email or password') {
-            alert('Senha ou e-mail inválidos');
+            this.toastr.error('Senha ou e-mail inválidos');
           }
         }
       },
@@ -93,6 +101,7 @@ export class PersonService {
     this.personSignal.set(null);
     localStorage.removeItem('@TokenIBS');
     localStorage.removeItem('@PersonId');
+    this.toastr.success('Deslogando...');
     this.router.navigateByUrl('/');
   }
 }
