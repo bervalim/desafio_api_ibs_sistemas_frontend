@@ -10,6 +10,7 @@ import {
 } from '../interfaces/person.interface';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { publicRoutes } from '../app.routes';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +19,15 @@ export class PersonService {
   readonly personSignal = signal<TPersonReturn | null>(null);
 
   constructor(private personRequest: PersonRequest, private router: Router) {
+    const pathname = window.location.pathname;
     this.personRequest.autoLoginPeopleRequest()?.subscribe({
       next: (data: TPersonReturn) => {
         this.personSignal.set(data);
-        this.router.navigateByUrl('/dashboard');
+        if (publicRoutes.includes(pathname)) {
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          this.router.navigateByUrl(pathname);
+        }
       },
       error: (error) => {
         console.log(error);
