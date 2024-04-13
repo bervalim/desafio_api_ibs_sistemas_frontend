@@ -1,5 +1,7 @@
-<main *ngIf="person">
-  <button (click)="handleLogout()">Sair</button>
-  <h3>Seja bem-vindo, {{ person.name }}</h3>
-  <p>{{ person.email }}</p>
-</main>
+<app-private-route>
+  <main>
+    <button (click)="handleLogout()">Sair</button>
+    <h3>Seja bem-vindo, {{ person.name }}</h3>
+    <p>{{ person.email }}</p>
+  </main>
+</app-private-route>
