@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {
   ILoginPersonReturn,
   IRegisterPersonReturn,
-  IRegisterPersonReturnBirthday,
   TLoginBodyRequest,
   TPersonReturn,
   TRegisterBodyRequest,
@@ -18,9 +17,10 @@ export class PersonRequest {
   constructor(private http: HttpClient) {}
 
   registerPeopleRequest(formData: TRegisterBodyRequest) {
-    return this.http.post<
-      IRegisterPersonReturn | IRegisterPersonReturnBirthday
-    >(`${this.BASE_URL}/people`, formData);
+    return this.http.post<IRegisterPersonReturn>(
+      `${this.BASE_URL}/people`,
+      formData
+    );
   }
 
   loginPeopleRequest(formData: TLoginBodyRequest) {

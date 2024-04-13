@@ -27,10 +27,6 @@ export interface IRegisterPersonReturn {
   person: TPersonReturn;
   age: number;
   daysUntilNextBirthday: number;
-}
-export interface IRegisterPersonReturnBirthday {
-  person: TPersonReturn;
-  age: number;
   message: string;
 }
 
