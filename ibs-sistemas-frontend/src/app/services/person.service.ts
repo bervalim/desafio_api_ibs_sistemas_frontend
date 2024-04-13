@@ -21,6 +21,7 @@ export class PersonService {
     this.personRequest.autoLoginPeopleRequest()?.subscribe({
       next: (data: TPersonReturn) => {
         this.personSignal.set(data);
+        this.router.navigateByUrl('/dashboard');
       },
       error: (error) => {
         console.log(error);

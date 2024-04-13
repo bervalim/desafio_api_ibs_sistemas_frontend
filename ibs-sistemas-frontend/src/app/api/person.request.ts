@@ -35,14 +35,11 @@ export class PersonRequest {
     const getPersonId = localStorage.getItem('@PersonId');
 
     if (getToken && getPersonId) {
-      const parsedToken = JSON.parse(getToken);
-      const parsedId = JSON.parse(getPersonId);
-
       return this.http.get<TPersonReturn>(
-        `${this.BASE_URL}/people/${parsedId}`,
+        `${this.BASE_URL}/people/${getPersonId}`,
         {
           headers: {
-            Authorization: `Bearer ${parsedToken}`,
+            Authorization: `Bearer ${getToken}`,
           },
         }
       );
