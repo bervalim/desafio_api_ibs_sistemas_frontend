@@ -9,6 +9,7 @@ import {
   TRegisterBodyRequest,
 } from '../interfaces/person.interface';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +21,17 @@ export class PersonService {
     this.personRequest.autoLoginPeopleRequest()?.subscribe({
       next: (data: TPersonReturn) => {
         this.personSignal.set(data);
+        this.router.navigateByUrl('/dashboard');
       },
       error: (error) => {
         console.log(error);
-        this;
+        this.logoutPeopleService();
       },
     });
+  }
+
+  getPerson() {
+    return this.personSignal();
   }
 
   registerPeopleService(formData: TRegisterBodyRequest) {
@@ -37,6 +43,11 @@ export class PersonService {
       },
       error: (error) => {
         console.log(error);
+        if (error instanceof HttpErrorResponse) {
+          if (error.error.message === 'Email already exists') {
+            alert('Já existe um usuário cadastrado com este e-mail!');
+          }
+        }
       },
     });
   }
@@ -51,6 +62,11 @@ export class PersonService {
       },
       error: (error) => {
         console.log(error);
+        if (error instanceof HttpErrorResponse) {
+          if (error.error.message === 'Invalid email or password') {
+            alert('Senha ou e-mail inválidos');
+          }
+        }
       },
     });
   }
