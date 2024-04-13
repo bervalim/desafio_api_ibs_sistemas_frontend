@@ -17,3 +17,5 @@ export const routes: Routes = [
     component: DashboardPageComponent,
   },
 ];
+
+export const publicRoutes = ['/', '/register'];
