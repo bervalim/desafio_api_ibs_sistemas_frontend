@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PersonService } from '../../services/person.service';
-import { CommonModule } from '@angular/common';
 import { PrivateRoutesComponent } from '../../components/private-routes/private-routes.component';
 
 @Component({

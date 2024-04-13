@@ -1,7 +1,7 @@
-<app-private-route>
+<app-private-routes>
   <main>
     <button (click)="handleLogout()">Sair</button>
-    <h3>Seja bem-vindo, {{ person.name }}</h3>
-    <p>{{ person.email }}</p>
+    <h3>Seja bem-vindo, {{ person?.name }}</h3>
+    <p>{{ person?.email }}</p>
   </main>
-</app-private-route>
+</app-private-routes>

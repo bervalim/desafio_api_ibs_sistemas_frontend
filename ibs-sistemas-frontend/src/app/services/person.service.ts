@@ -3,7 +3,6 @@ import { PersonRequest } from '../api/person.request';
 import {
   ILoginPersonReturn,
   IRegisterPersonReturn,
-  IRegisterPersonReturnBirthday,
   TLoginBodyRequest,
   TPersonReturn,
   TRegisterBodyRequest,
@@ -42,13 +41,27 @@ export class PersonService {
 
   registerPeopleService(formData: TRegisterBodyRequest) {
     this.personRequest.registerPeopleRequest(formData).subscribe({
-      next: (data: IRegisterPersonReturn | IRegisterPersonReturnBirthday) => {
-        console.log(data);
-        alert('Cadastro realizado com sucesso');
+      next: (data: IRegisterPersonReturn) => {
+        const today = new Date();
+        const formattedToday = `${today
+          .getDate()
+          .toString()
+          .padStart(2, '0')}/${(today.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}`;
+        const formattedBirthDate = data.person.birthDate.substring(0, 5);
+        if (formattedBirthDate === formattedToday) {
+          alert(
+            `${data.message}.É incrível que você faça parte de nossa história`
+          );
+        } else {
+          alert(
+            `Você tem ${data.age} anos e faltam ${data.daysUntilNextBirthday} dias para podermos comemorar o seu aniversário`
+          );
+        }
         this.router.navigateByUrl('/');
       },
       error: (error) => {
-        console.log(error);
         if (error instanceof HttpErrorResponse) {
           if (error.error.message === 'Email already exists') {
             alert('Já existe um usuário cadastrado com este e-mail!');
@@ -67,7 +80,6 @@ export class PersonService {
         this.router.navigateByUrl('/dashboard');
       },
       error: (error) => {
-        console.log(error);
         if (error instanceof HttpErrorResponse) {
           if (error.error.message === 'Invalid email or password') {
             alert('Senha ou e-mail inválidos');
