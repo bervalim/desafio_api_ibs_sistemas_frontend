@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {
   IAddress,
   TCreateAddressBodyRequest,
-  TPersonAddress,
   TUpdateAddressBodyRequest,
 } from '../interfaces/address.interface';
 

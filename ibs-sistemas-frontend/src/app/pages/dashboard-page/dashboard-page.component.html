@@ -14,11 +14,16 @@
         <p>{{ address.neighborhood }}</p>
         <span>{{ address.state }}</span>
         <p>{{ address.city }}</p>
-        <button (click)="handleDeleteAddress(address.id)">
-          Deletar Endereço
-        </button>
+        <span>{{ address.complement }}</span>
+        <div>
+          <button (click)="handleDeleteAddress(address.id)">
+            Deletar Endereço
+          </button>
+          <button (click)="handleEditAddress(address)">Editar endereço:</button>
+        </div>
       </li>
     </ul>
     <p *ngIf="personAddressList.length === 0">Crie o seu primeiro endereço</p>
+    <app-edit-adress-form *ngIf="editingAddress"></app-edit-adress-form>
   </main>
 </app-private-routes>

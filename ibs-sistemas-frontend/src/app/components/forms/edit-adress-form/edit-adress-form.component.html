@@ -1,0 +1,28 @@
+<form (ngSubmit)="submit()" [formGroup]="editAddressForm">
+  <h2>Editando Endereço:</h2>
+  <button (click)="setEditingAddressToNull()">Fechar modal</button>
+  <div>
+    <input type="text" placeholder="CEP" formControlName="zipCode" />
+  </div>
+  <div>
+    <input type="text" placeholder="Endereço" formControlName="address" />
+  </div>
+  <div>
+    <input type="number" placeholder="Número:" formControlName="number" />
+  </div>
+  <div>
+    <input
+      type="text"
+      placeholder="Complemento:"
+      formControlName="complement"
+    />
+  </div>
+  <div>
+    <input type="text" placeholder="bairro:" formControlName="neighborhood" />
+  </div>
+  <div><input type="text" placeholder="Estado:" formControlName="state" /></div>
+  <div>
+    <input type="text" placeholder="Cidade:" formControlName="city" />
+  </div>
+  <button type="submit">Editar</button>
+</form>

@@ -3,8 +3,6 @@ import { AddressRequest } from '../api/address.request';
 import {
   IAddress,
   TCreateAddressBodyRequest,
-  TPersonAddress,
-  TPersonAddresses,
   TUpdateAddressBodyRequest,
 } from '../interfaces/address.interface';
 
@@ -13,6 +11,7 @@ import {
 })
 export class AddressService {
   readonly personAddressesListSignal = signal<IAddress[]>([]);
+  readonly editingAddressSignal = signal<IAddress | null>(null);
 
   constructor(private addressRequest: AddressRequest) {
     this.addressRequest
@@ -27,6 +26,14 @@ export class AddressService {
     return this.personAddressesListSignal();
   }
 
+  getEditingAdress() {
+    return this.editingAddressSignal();
+  }
+
+  setEditingAddress(address: IAddress | null) {
+    return this.editingAddressSignal.set(address);
+  }
+
   createAddressService(formData: TCreateAddressBodyRequest) {
     this.addressRequest
       .createAddressRequest(formData)
@@ -38,20 +45,24 @@ export class AddressService {
       });
   }
 
-  updateAddressService(addressId: string, formData: TUpdateAddressBodyRequest) {
-    this.addressRequest
-      .updateAddressRequest(addressId, formData)
-      ?.subscribe((data: IAddress) => {
-        this.personAddressesListSignal.update((personAddressesList) =>
-          personAddressesList.map((address) => {
-            if (address.id === addressId) {
-              return data;
-            } else {
-              return address;
-            }
-          })
-        );
-      });
+  updateAddressService(formData: TUpdateAddressBodyRequest) {
+    const editingAddress = this.editingAddressSignal();
+    if (editingAddress) {
+      const id = editingAddress?.id;
+      this.addressRequest
+        .updateAddressRequest(id, formData)
+        ?.subscribe((data: IAddress) => {
+          this.personAddressesListSignal.update((personAddressesList) =>
+            personAddressesList.map((address) => {
+              if (address.id === id) {
+                return data;
+              } else {
+                return address;
+              }
+            })
+          );
+        });
+    }
   }
 
   deleteAddressService(addressId: string) {
