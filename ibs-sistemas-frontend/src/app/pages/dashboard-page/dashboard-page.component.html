@@ -1,7 +1,29 @@
 <app-private-routes>
   <main>
-    <button (click)="handleLogout()">Sair</button>
-    <h3>Seja bem-vindo, {{ person?.name }}</h3>
-    <p>{{ person?.email }}</p>
+    <div>
+      <button (click)="handleLogout()">Sair</button>
+      <h3>Seja bem-vindo, {{ person?.name }}</h3>
+      <p>{{ person?.email }}</p>
+    </div>
+    <app-create-address-form></app-create-address-form>
+    <ul *ngIf="personAddressList.length > 0">
+      <li *ngFor="let address of personAddressList">
+        <p>{{ address.zipCode }}</p>
+        <h3>{{ address.address }}</h3>
+        <span>{{ address.number }}</span>
+        <p>{{ address.neighborhood }}</p>
+        <span>{{ address.state }}</span>
+        <p>{{ address.city }}</p>
+        <span>{{ address.complement }}</span>
+        <div>
+          <button (click)="handleDeleteAddress(address.id)">
+            Deletar Endereço
+          </button>
+          <button (click)="handleEditAddress(address)">Editar endereço:</button>
+        </div>
+      </li>
+    </ul>
+    <p *ngIf="personAddressList.length === 0">Crie o seu primeiro endereço</p>
+    <app-edit-adress-form *ngIf="editingAddress"></app-edit-adress-form>
   </main>
 </app-private-routes>
