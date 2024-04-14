@@ -5,12 +5,13 @@ import {
   TCreateAddressBodyRequest,
   TUpdateAddressBodyRequest,
 } from '../interfaces/address..interface';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AddressRequest {
-  constructor(private htpp: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   private BASE_URL = 'http://localhost:3000';
 
@@ -18,7 +19,7 @@ export class AddressRequest {
     const token = localStorage.getItem('@TokenIBS');
 
     if (token) {
-      return this.htpp.post<IAddress>(`${this.BASE_URL}/addresses`, data, {
+      return this.http.post<IAddress>(`${this.BASE_URL}/addresses`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +34,7 @@ export class AddressRequest {
     const personId = localStorage.getItem('@PersonId');
 
     if (token) {
-      return this.htpp.get<IAddress[]>(`${this.BASE_URL}/people/${personId}`, {
+      return this.http.get<IAddress[]>(`${this.BASE_URL}/people/${personId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +48,7 @@ export class AddressRequest {
     const token = localStorage.getItem('@TokenIBS');
 
     if (token) {
-      return this.htpp.patch<IAddress>(
+      return this.http.patch<IAddress>(
         `${this.BASE_URL}/addresses/${addressId}`,
         data,
         {
@@ -56,6 +57,20 @@ export class AddressRequest {
           },
         }
       );
+    } else {
+      return null;
+    }
+  }
+
+  deleteAddressRequest(addressId: string) {
+    const token = localStorage.getItem('@TokenIBS');
+
+    if (token) {
+      return this.http.delete<void>(`${this.BASE_URL}/addresses/${addressId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } else {
       return null;
     }
