@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   IAddress,
   TCreateAddressBodyRequest,
+  TUpdateAddressBodyRequest,
 } from '../interfaces/address..interface';
 
 @Injectable({
@@ -32,11 +33,29 @@ export class AddressRequest {
     const personId = localStorage.getItem('@PersonId');
 
     if (token) {
-      return this.htpp.get(`${this.BASE_URL}/${personId}`, {
+      return this.htpp.get<IAddress[]>(`${this.BASE_URL}/people/${personId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+    } else {
+      return null;
+    }
+  }
+
+  updateAddressRequest(addressId: string, data: TUpdateAddressBodyRequest) {
+    const token = localStorage.getItem('@TokenIBS');
+
+    if (token) {
+      return this.htpp.patch<IAddress>(
+        `${this.BASE_URL}/addresses/${addressId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } else {
       return null;
     }
