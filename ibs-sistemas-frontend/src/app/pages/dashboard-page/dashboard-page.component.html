@@ -14,6 +14,9 @@
         <p>{{ address.neighborhood }}</p>
         <span>{{ address.state }}</span>
         <p>{{ address.city }}</p>
+        <button (click)="handleDeleteAddress(address.id)">
+          Deletar Endereço
+        </button>
       </li>
     </ul>
     <p *ngIf="personAddressList.length === 0">Crie o seu primeiro endereço</p>

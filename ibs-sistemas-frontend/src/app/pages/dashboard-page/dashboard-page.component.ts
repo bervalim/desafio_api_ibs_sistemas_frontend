@@ -26,6 +26,10 @@ export class DashboardPageComponent {
     return this.addressService.getPersonAddresses();
   }
 
+  handleDeleteAddress(addressId: string) {
+    return this.addressService.deleteAddressService(addressId);
+  }
+
   handleLogout() {
     return this.personService.logoutPeopleService();
   }
