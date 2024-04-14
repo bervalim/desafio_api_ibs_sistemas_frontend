@@ -26,4 +26,19 @@ export class AddressRequest {
       return null;
     }
   }
+
+  getAddressesPersonRequest() {
+    const token = localStorage.getItem('@TokenIBS');
+    const personId = localStorage.getItem('@PersonId');
+
+    if (token) {
+      return this.htpp.get(`${this.BASE_URL}/${personId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } else {
+      return null;
+    }
+  }
 }
