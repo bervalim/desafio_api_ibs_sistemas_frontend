@@ -21,6 +21,7 @@ export type TPersonAddress = {
   addresses: IAddress[];
 };
 
+export type TPersonAddresses = Pick<TPersonAddress, 'addresses'>;
 export type TCreateAddressBodyRequest = Omit<IAddress, 'id' | 'personId'>;
 
 export type TUpdateAddressBodyRequest = Partial<TCreateAddressBodyRequest>;
