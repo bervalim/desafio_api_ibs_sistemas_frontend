@@ -4,8 +4,7 @@ import {
   IAddress,
   TCreateAddressBodyRequest,
   TUpdateAddressBodyRequest,
-} from '../interfaces/address..interface';
-import { throwError } from 'rxjs';
+} from '../interfaces/address.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +14,11 @@ export class AddressRequest {
 
   private BASE_URL = 'http://localhost:3000';
 
-  createAddressRequest(data: TCreateAddressBodyRequest) {
+  createAddressRequest(data: any) {
     const token = localStorage.getItem('@TokenIBS');
 
     if (token) {
-      return this.http.post<IAddress>(`${this.BASE_URL}/addresses`, data, {
+      return this.http.post<any>(`${this.BASE_URL}/addresses`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +33,7 @@ export class AddressRequest {
     const personId = localStorage.getItem('@PersonId');
 
     if (token) {
-      return this.http.get<IAddress[]>(`${this.BASE_URL}/people/${personId}`, {
+      return this.http.get<any>(`${this.BASE_URL}/people/${personId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
