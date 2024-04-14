@@ -9,11 +9,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     provideToastr({
-      timeOut: 1000, // Display for 5 seconds
-      positionClass: 'toast-top-right', // Position at bottom-left
-      preventDuplicates: true, // Prevent duplicates
-      closeButton: true, // Enable close button
-      progressBar: true, // Show progress bar
+      timeOut: 1000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true,
+      progressBar: true,
     }),
   ],
 };
