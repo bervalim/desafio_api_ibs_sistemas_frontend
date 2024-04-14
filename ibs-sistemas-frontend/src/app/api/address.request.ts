@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   IAddress,
   TCreateAddressBodyRequest,
+  TPersonAddress,
   TUpdateAddressBodyRequest,
 } from '../interfaces/address.interface';
 
@@ -32,12 +33,15 @@ export class AddressRequest {
     const token = localStorage.getItem('@TokenIBS');
     const personId = localStorage.getItem('@PersonId');
 
-    if (token) {
-      return this.http.get<any>(`${this.BASE_URL}/people/${personId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    if (token && personId) {
+      return this.http.get<IAddress[]>(
+        `${this.BASE_URL}/people/${personId}/addresses`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } else {
       return null;
     }

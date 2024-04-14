@@ -12,33 +12,38 @@ import {
   providedIn: 'root',
 })
 export class AddressService {
-  readonly personAddressesListSignal = signal<any>([]);
+  readonly personAddressesListSignal = signal<IAddress[]>([]);
 
   constructor(private addressRequest: AddressRequest) {
-    this.addressRequest.getAddressesPersonRequest()?.subscribe((data) => {
-      this.personAddressesListSignal.set(data.addresses);
-    });
+    this.addressRequest
+      .getAddressesPersonRequest()
+      ?.subscribe((data: IAddress[]) => {
+        console.log(data);
+        this.personAddressesListSignal.set(data);
+      });
   }
 
   getPersonAddresses() {
     return this.personAddressesListSignal();
   }
 
-  createAddressService(formData: any) {
-    this.addressRequest.createAddressRequest(formData)?.subscribe((data) => {
-      this.personAddressesListSignal.update((personAddressesList) => [
-        ...personAddressesList,
-        data,
-      ]);
-    });
+  createAddressService(formData: TCreateAddressBodyRequest) {
+    this.addressRequest
+      .createAddressRequest(formData)
+      ?.subscribe((data: IAddress) => {
+        this.personAddressesListSignal.update((personAddressesList) => [
+          ...personAddressesList,
+          data,
+        ]);
+      });
   }
 
   updateAddressService(addressId: string, formData: TUpdateAddressBodyRequest) {
     this.addressRequest
       .updateAddressRequest(addressId, formData)
-      ?.subscribe((data) => {
+      ?.subscribe((data: IAddress) => {
         this.personAddressesListSignal.update((personAddressesList) =>
-          personAddressesList.map((address: any) => {
+          personAddressesList.map((address) => {
             if (address.id === addressId) {
               return data;
             } else {
@@ -52,7 +57,7 @@ export class AddressService {
   deleteAddressService(addressId: string) {
     this.addressRequest.deleteAddressRequest(addressId)?.subscribe(() => {
       this.personAddressesListSignal.update((personAddressesList) =>
-        personAddressesList.filter((address: any) => address.id !== addressId)
+        personAddressesList.filter((address) => address.id !== addressId)
       );
     });
   }
