@@ -6,6 +6,8 @@ import { AddressService } from '../../services/address.service';
 import { CommonModule } from '@angular/common';
 import { EditAdressFormComponent } from '../../components/forms/edit-adress-form/edit-adress-form.component';
 import { IAddress } from '../../interfaces/address.interface';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCommonModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -15,6 +17,8 @@ import { IAddress } from '../../interfaces/address.interface';
     PrivateRoutesComponent,
     CreateAddressFormComponent,
     EditAdressFormComponent,
+    MatIconModule,
+    MatCommonModule,
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',

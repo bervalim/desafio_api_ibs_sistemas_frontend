@@ -9,11 +9,19 @@ import {
 import { RouterLink } from '@angular/router';
 import { PersonService } from '../../../services/person.service';
 import { TRegisterBodyRequest } from '../../../interfaces/person.interface';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCommonModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterLink,
+    MatIconModule,
+    MatCommonModule,
+  ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
 })
