@@ -6,6 +6,7 @@ import {
   TUpdateAddressBodyRequest,
 } from '../interfaces/address.interface';
 import { ToastrService } from 'ngx-toastr';
+import { ViacepRequest } from '../api/viacep.request';
 
 @Injectable({
   providedIn: 'root',
