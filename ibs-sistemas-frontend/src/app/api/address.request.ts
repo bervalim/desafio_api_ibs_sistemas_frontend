@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   IAddress,
@@ -68,7 +68,7 @@ export class AddressRequest {
     const token = localStorage.getItem('@TokenIBS');
 
     if (token) {
-      return this.http.delete<void>(`${this.BASE_URL}/addresses/${addressId}`, {
+      return this.http.delete<any>(`${this.BASE_URL}/addresses/${addressId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -10,6 +10,10 @@ export interface IAddress {
   personId: string;
 }
 
+export interface AddressFilter {
+  searchQuery?: string;
+}
+
 export type TCreateAddressBodyRequest = Omit<IAddress, 'id' | 'personId'>;
 
 export type TUpdateAddressBodyRequest = Partial<TCreateAddressBodyRequest>;

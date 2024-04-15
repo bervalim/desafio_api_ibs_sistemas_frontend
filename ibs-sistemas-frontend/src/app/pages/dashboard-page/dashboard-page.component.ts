@@ -8,6 +8,7 @@ import { EditAdressFormComponent } from '../../components/forms/edit-adress-form
 import { IAddress } from '../../interfaces/address.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCommonModule } from '@angular/material/core';
+import { AddressRequest } from '../../api/address.request';
 
 @Component({
   selector: 'app-dashboard-page',
