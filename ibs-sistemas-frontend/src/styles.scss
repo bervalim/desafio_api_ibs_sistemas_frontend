@@ -29,3 +29,9 @@ body {
 .close {
   color: #8490ff;
 }
+
+@import "./styles/reset.scss";
+@import "./styles/globalStyles.scss";
+@import "./styles/typograpy.scss";
+@import "./styles/buttons.scss";
+@import "./styles/container.scss";

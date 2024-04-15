@@ -1,39 +1,46 @@
 <app-private-routes>
-  <main>
-    <div>
-      <button (click)="handleLogout()">Sair</button>
-      <h3>Seja bem-vindo, {{ person?.name }}</h3>
-      <p>{{ person?.email }}</p>
-    </div>
-    <div>
-      <h2>Cadastre os seus endereços:</h2>
-      <button (click)="openCreateAdressModal()">
-        <mat-icon class="add">add</mat-icon>
-      </button>
-    </div>
-    <app-create-address-form
-      *ngIf="createAdressSignal"
-    ></app-create-address-form>
-    <ul *ngIf="personAddressList.length > 0">
-      <li *ngFor="let address of personAddressList">
-        <p>{{ address.zipCode }}</p>
-        <h3>{{ address.address }}</h3>
-        <span>{{ address.number }}</span>
-        <p>{{ address.neighborhood }}</p>
-        <span>{{ address.state }}</span>
-        <p>{{ address.city }}</p>
-        <span>{{ address.complement }}</span>
-        <div>
-          <button (click)="handleDeleteAddress(address.id)">
-            <mat-icon class="trash"> delete </mat-icon>
-          </button>
-          <button (click)="handleEditAddress(address)">
-            <mat-icon class="pencil">edit</mat-icon>
-          </button>
-        </div>
-      </li>
-    </ul>
-    <p *ngIf="personAddressList.length === 0">Crie o seu primeiro endereço</p>
-    <app-edit-adress-form *ngIf="editingAddress"></app-edit-adress-form>
-  </main>
+  <div class="container">
+    <main>
+      <div>
+        <button class="btn outline" (click)="handleLogout()">Sair</button>
+        <h3 class="paragraph card title">Seja bem-vindo, {{ person?.name }}</h3>
+        <p class="paragraph card content email">{{ person?.email }}</p>
+      </div>
+      <div>
+        <h2 class="paragraph card title cta">Cadastre os seus endereços:</h2>
+        <button (click)="openCreateAdressModal()">
+          <mat-icon class="add">add</mat-icon>
+        </button>
+      </div>
+      <app-create-address-form
+        *ngIf="createAdressSignal"
+      ></app-create-address-form>
+      <ul *ngIf="personAddressList.length > 0">
+        <li *ngFor="let address of personAddressList">
+          <p class="paragraph card content">{{ address.zipCode }}</p>
+          <h3 class="paragraph card content email">{{ address.address }}</h3>
+          <span class="paragraph card content">{{ address.number }}</span>
+          <p class="paragraph card content email">{{ address.neighborhood }}</p>
+          <span class="paragraph card content">{{ address.state }}</span>
+          <p class="paragraph card content email">{{ address.city }}</p>
+          <span class="paragraph card content">{{ address.complement }}</span>
+          <div>
+            <button (click)="handleDeleteAddress(address.id)">
+              <mat-icon class="trash"> delete </mat-icon>
+            </button>
+            <button (click)="handleEditAddress(address)">
+              <mat-icon class="pencil">edit</mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <p
+        class="paragraph card content email"
+        *ngIf="personAddressList.length === 0"
+      >
+        Crie o seu primeiro endereço
+      </p>
+      <app-edit-adress-form *ngIf="editingAddress"></app-edit-adress-form>
+    </main>
+  </div>
 </app-private-routes>
