@@ -5,6 +5,7 @@ import {
   TCreateAddressBodyRequest,
   TUpdateAddressBodyRequest,
 } from '../interfaces/address.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,13 @@ export class AddressService {
   readonly personAddressesListSignal = signal<IAddress[]>([]);
   readonly editingAddressSignal = signal<IAddress | null>(null);
 
-  constructor(private addressRequest: AddressRequest) {
+  constructor(
+    private addressRequest: AddressRequest,
+    private toastr: ToastrService
+  ) {
     this.addressRequest
       .getAddressesPersonRequest()
       ?.subscribe((data: IAddress[]) => {
-        console.log(data);
         this.personAddressesListSignal.set(data);
       });
   }
@@ -35,23 +38,26 @@ export class AddressService {
   }
 
   createAddressService(formData: TCreateAddressBodyRequest) {
-    this.addressRequest
-      .createAddressRequest(formData)
-      ?.subscribe((data: IAddress) => {
+    this.addressRequest.createAddressRequest(formData)?.subscribe({
+      next: (data: IAddress) => {
         this.personAddressesListSignal.update((personAddressesList) => [
           ...personAddressesList,
           data,
         ]);
-      });
+        this.toastr.success('Endereço criado com sucesso!');
+      },
+      error: () => {
+        this.toastr.error('Erro ao criar endereço.');
+      },
+    });
   }
 
   updateAddressService(formData: TUpdateAddressBodyRequest) {
     const editingAddress = this.editingAddressSignal();
     if (editingAddress) {
-      const id = editingAddress?.id;
-      this.addressRequest
-        .updateAddressRequest(id, formData)
-        ?.subscribe((data: IAddress) => {
+      const id = editingAddress.id;
+      this.addressRequest.updateAddressRequest(id, formData)?.subscribe({
+        next: (data: IAddress) => {
           this.personAddressesListSignal.update((personAddressesList) =>
             personAddressesList.map((address) => {
               if (address.id === id) {
@@ -61,15 +67,26 @@ export class AddressService {
               }
             })
           );
-        });
+          this.toastr.success('Endereço atualizado com sucesso!');
+        },
+        error: () => {
+          this.toastr.error('Erro ao atualizar o endereço.');
+        },
+      });
     }
   }
 
   deleteAddressService(addressId: string) {
-    this.addressRequest.deleteAddressRequest(addressId)?.subscribe(() => {
-      this.personAddressesListSignal.update((personAddressesList) =>
-        personAddressesList.filter((address) => address.id !== addressId)
-      );
+    this.addressRequest.deleteAddressRequest(addressId)?.subscribe({
+      next: () => {
+        this.personAddressesListSignal.update((personAddressesList) =>
+          personAddressesList.filter((address) => address.id !== addressId)
+        );
+        this.toastr.success('Endereço deletado com sucesso!');
+      },
+      error: () => {
+        this.toastr.error('Erro ao deletar o endereço.');
+      },
     });
   }
 }
