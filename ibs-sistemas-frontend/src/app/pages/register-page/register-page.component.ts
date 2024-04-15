@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RegisterFormComponent } from '../../components/forms/register-form/register-form.component';
-
 @Component({
   selector: 'app-register-page',
   standalone: true,

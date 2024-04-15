@@ -5,7 +5,7 @@
       <a routerLink="/"><mat-icon class="arrow">arrow_back</mat-icon></a>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <input type="text" placeholder="Nome:" formControlName="name" />
         <p
           *ngIf="errors.name?.['required'] && registerForm.get('name')?.value!==null"
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <input type="email" placeholder="E-mail" formControlName="email" />
         <p
           *ngIf="errors.email?.['required'] && registerForm.get('email')?.value!==null"
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <input
           type="password"
           placeholder="Senha:"
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <select name="sex" formControlName="sex">
           <option value="">Sexo:</option>
           <option value="Male">Masculino</option>
@@ -80,7 +80,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <input
           type="text"
           placeholder="Data de nascimento:"
@@ -101,7 +101,7 @@
       </p>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <select name="civilState" formControlName="civilState">
           <option value="">Estado cívil:</option>
           <option value="Married">Casado(a)</option>
