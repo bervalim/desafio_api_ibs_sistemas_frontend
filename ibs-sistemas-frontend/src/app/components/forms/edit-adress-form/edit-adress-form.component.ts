@@ -2,11 +2,13 @@ import { Component, effect } from '@angular/core';
 import { AddressService } from '../../../services/address.service';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TUpdateAddressBodyRequest } from '../../../interfaces/address.interface';
+import { MatCommonModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-adress-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatIconModule, MatCommonModule],
   templateUrl: './edit-adress-form.component.html',
   styleUrl: './edit-adress-form.component.scss',
 })

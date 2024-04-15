@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AddressService {
   readonly personAddressesListSignal = signal<IAddress[]>([]);
   readonly editingAddressSignal = signal<IAddress | null>(null);
+  readonly createAddressModalSignal = signal(false);
 
   constructor(
     private addressRequest: AddressRequest,
@@ -29,12 +30,24 @@ export class AddressService {
     return this.personAddressesListSignal();
   }
 
+  getCreateAddressModalSignal() {
+    return this.createAddressModalSignal();
+  }
+
   getEditingAdress() {
     return this.editingAddressSignal();
   }
 
   setEditingAddress(address: IAddress | null) {
     return this.editingAddressSignal.set(address);
+  }
+
+  setCreateAddressModal() {
+    return this.createAddressModalSignal.set(true);
+  }
+
+  closeCreateAddressModal() {
+    return this.createAddressModalSignal.set(false);
   }
 
   createAddressService(formData: TCreateAddressBodyRequest) {
@@ -45,6 +58,7 @@ export class AddressService {
           data,
         ]);
         this.toastr.success('Endereço criado com sucesso!');
+        this.closeCreateAddressModal();
       },
       error: () => {
         this.toastr.error('Erro ao criar endereço.');
