@@ -10,6 +10,7 @@ import { TCreateAddressBodyRequest } from '../../../interfaces/address.interface
 import { MatCommonModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ViacepRequest } from '../../../api/viacep.request';
 
 @Component({
   selector: 'app-create-address-form',
@@ -19,7 +20,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-address-form.component.scss',
 })
 export class CreateAddressFormComponent {
-  constructor(private addressService: AddressService) {}
+  constructor(
+    private addressService: AddressService,
+    private viaCepRequest: ViacepRequest
+  ) {
+    this.createAddressForm.get('zipCode')?.valueChanges.subscribe((zipCode) => {
+      if (zipCode && this.createAddressForm.get('zipCode')?.valid) {
+        this.viaCepRequest
+          .findAddressByZipCode(zipCode)
+          .subscribe((address: any) => {
+            this.createAddressForm.patchValue({
+              address: address.logradouro,
+              neighborhood: address.bairro,
+              state: address.uf,
+              city: address.localidade,
+            });
+          });
+      }
+    });
+  }
 
   createAddressForm = new FormGroup({
     zipCode: new FormControl<string | null>(null, [
