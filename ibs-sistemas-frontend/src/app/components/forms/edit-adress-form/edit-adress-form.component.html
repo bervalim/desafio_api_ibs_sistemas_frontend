@@ -1,5 +1,5 @@
 <form (ngSubmit)="submit()" [formGroup]="editAddressForm">
-  <h2>Editando Endereço:</h2>
+  <h2 class="title modal">Editando Endereço:</h2>
   <button (click)="setEditingAddressToNull()">
     <mat-icon class="close">close</mat-icon>
   </button>
@@ -26,5 +26,5 @@
   <div>
     <input type="text" placeholder="Cidade:" formControlName="city" />
   </div>
-  <button type="submit">Editar</button>
+  <button class="btn" type="submit">Editar</button>
 </form>
