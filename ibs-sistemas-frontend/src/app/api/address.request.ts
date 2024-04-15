@@ -12,7 +12,7 @@ import {
 export class AddressRequest {
   constructor(private http: HttpClient) {}
 
-  private BASE_URL = 'http://localhost:3000';
+  private BASE_URL = 'https://desafio-api-ibs-sistemas-backend.onrender.com';
 
   createAddressRequest(data: any) {
     const token = localStorage.getItem('@TokenIBS');

@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class PersonRequest {
-  private BASE_URL = 'http://localhost:3000';
+  private BASE_URL = 'https://desafio-api-ibs-sistemas-backend.onrender.com';
 
   constructor(private http: HttpClient) {}
 
