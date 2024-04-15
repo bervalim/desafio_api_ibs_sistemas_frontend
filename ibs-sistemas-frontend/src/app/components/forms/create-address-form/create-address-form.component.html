@@ -1,0 +1,133 @@
+<div class="modalOverlay">
+  <div class="modalBox">
+    <div class="ModalHeaders">
+      <h2 class="title modal">Criar endereço:</h2>
+      <button (click)="handleCloseModal()">
+        <mat-icon class="close">close</mat-icon>
+      </button>
+    </div>
+    <form
+      class="formModal"
+      (ngSubmit)="submit()"
+      [formGroup]="createAddressForm"
+    >
+      <div class="inputBox">
+        <input type="text" placeholder="CEP" formControlName="zipCode" />
+        <p
+          *ngIf="errors.zipCode?.['required'] && createAddressForm.get('zipCode')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o CEP é obrigatório
+        </p>
+        <p
+          *ngIf="errors.zipCode?.['pattern']"
+          class="paragraph validation errors"
+        >
+          O CEP precisa ter 8 dígitos.Ex:(80730330 ou 80730-330 )
+        </p>
+      </div>
+      <div class="inputBox">
+        <input type="text" placeholder="Endereço" formControlName="address" />
+        <p
+          *ngIf="errors.address?.['required'] && createAddressForm.get('address')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o seu endereço é obrigatório!
+        </p>
+        <p
+          *ngIf="errors.address?.['maxlength']"
+          class="paragraph validation errors"
+        >
+          O Endereço pode ter no máximo 200 caracteres
+        </p>
+      </div>
+      <div class="inputBox">
+        <input type="number" placeholder="Número:" formControlName="number" />
+        <p
+          *ngIf="errors.number?.['required'] && createAddressForm.get('number')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o seu número de residência é obrigatório!
+        </p>
+        <p
+          *ngIf="errors.number?.['maxlength']"
+          class="paragraph validation errors"
+        >
+          O seu número de residência pode ter no máximo 8 dígitos
+        </p>
+      </div>
+      <div class="inputBox">
+        <input
+          type="text"
+          placeholder="Complemento:"
+          formControlName="complement"
+        />
+        <p
+          *ngIf="errors.complement?.['required'] && createAddressForm.get('complement')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o seu complemento é obrigatório!
+        </p>
+        <p
+          *ngIf="errors.complement?.['maxlength']"
+          class="paragraph validation errors"
+        >
+          O seu complemento pode ter no máximo 40 caracteres
+        </p>
+      </div>
+      <div class="inputBox">
+        <input
+          type="text"
+          placeholder="Bairro:"
+          formControlName="neighborhood"
+        />
+        <p
+          *ngIf="errors.neighborhood?.['required'] && createAddressForm.get('neighborhood')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o seu bairro é obrigatório!
+        </p>
+        <p
+          *ngIf="errors.neighborhood?.['maxlength']"
+          class="paragraph validation errors"
+        >
+          O seu bairro pode ter no máximo 20 caracteres
+        </p>
+      </div>
+      <div class="inputBox">
+        <input type="text" placeholder="Estado:" formControlName="state" />
+        <p
+          *ngIf="errors.state?.['required'] && createAddressForm.get('state')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o seu estado é obrigatório !
+        </p>
+        <p
+          *ngIf="errors.state?.['pattern']"
+          class="paragraph validation errors"
+        >
+          O seu estado precisa ter 2 dígitos,Letra maiúscula ou minúscula e
+          fazer parte das 27 unidades federativas do Brasil
+        </p>
+      </div>
+      <div class="inputBox">
+        <input type="text" placeholder="Cidade:" formControlName="city" />
+        <p
+          *ngIf="errors.city?.['required'] && createAddressForm.get('city')?.value!==null"
+          class="paragraph validation errors"
+        >
+          Informar o sua cidade é obrigatório!
+        </p>
+        <p
+          *ngIf="errors.city?.['maxLength']"
+          class="paragraph validation errors"
+        >
+          A cidade pode conter no máximo 50 caracteres
+        </p>
+      </div>
+      <div class="button">
+        <button class="btn" type="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>
