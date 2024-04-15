@@ -5,7 +5,15 @@
       <h3>Seja bem-vindo, {{ person?.name }}</h3>
       <p>{{ person?.email }}</p>
     </div>
-    <app-create-address-form></app-create-address-form>
+    <div>
+      <h2>Cadastre os seus endereços:</h2>
+      <button (click)="openCreateAdressModal()">
+        <mat-icon class="add">add</mat-icon>
+      </button>
+    </div>
+    <app-create-address-form
+      *ngIf="createAdressSignal"
+    ></app-create-address-form>
     <ul *ngIf="personAddressList.length > 0">
       <li *ngFor="let address of personAddressList">
         <p>{{ address.zipCode }}</p>
@@ -16,15 +24,11 @@
         <p>{{ address.city }}</p>
         <span>{{ address.complement }}</span>
         <div>
-          <button>
-            <mat-icon class="trash" (click)="handleDeleteAddress(address.id)">
-              delete
-            </mat-icon>
+          <button (click)="handleDeleteAddress(address.id)">
+            <mat-icon class="trash"> delete </mat-icon>
           </button>
-          <button>
-            <mat-icon (click)="handleEditAddress(address)" class="pencil"
-              >edit</mat-icon
-            >
+          <button (click)="handleEditAddress(address)">
+            <mat-icon class="pencil">edit</mat-icon>
           </button>
         </div>
       </li>

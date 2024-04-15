@@ -1,6 +1,8 @@
 <form (ngSubmit)="submit()" [formGroup]="editAddressForm">
   <h2>Editando Endereço:</h2>
-  <button (click)="setEditingAddressToNull()">Fechar modal</button>
+  <button (click)="setEditingAddressToNull()">
+    <mat-icon class="close">close</mat-icon>
+  </button>
   <div>
     <input type="text" placeholder="CEP" formControlName="zipCode" />
   </div>

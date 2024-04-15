@@ -1,5 +1,8 @@
 <form (ngSubmit)="submit()" [formGroup]="createAddressForm">
   <h2>Criar Endereço:</h2>
+  <button (click)="handleCloseModal()">
+    <mat-icon class="close">close</mat-icon>
+  </button>
   <div>
     <input type="text" placeholder="CEP" formControlName="zipCode" />
   </div>

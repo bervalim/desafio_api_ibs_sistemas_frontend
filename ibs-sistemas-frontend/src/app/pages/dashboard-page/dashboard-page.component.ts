@@ -41,6 +41,14 @@ export class DashboardPageComponent {
     return this.addressService.getEditingAdress();
   }
 
+  get createAdressSignal() {
+    return this.addressService.getCreateAddressModalSignal();
+  }
+
+  openCreateAdressModal() {
+    return this.addressService.setCreateAddressModal();
+  }
+
   handleDeleteAddress(addressId: string) {
     return this.addressService.deleteAddressService(addressId);
   }
