@@ -2,7 +2,7 @@
   <form (ngSubmit)="submitLoginForm()" [formGroup]="loginForm">
     <h3 class="title lg">Faça Login</h3>
     <div>
-      <div>
+      <div class="inputBox">
         <input type="email" placeholder="E-mail:" formControlName="email" />
         <p
           *ngIf="errors.email?.['required'] && loginForm.get('email')?.value!==null "
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="inputBox">
         <input
           type="password"
           placeholder="Senha:"
@@ -27,8 +27,8 @@
         </p>
       </div>
     </div>
-    <button class="btn" type="submit">Entrar</button>
-    <div>
+    <div class="cta">
+      <button class="btn" type="submit">Entrar</button>
       <p class="paragraph card content">
         Não possui cadastro?
         <a routerLink="/register" class="anchor">Cadastre-se</a>
