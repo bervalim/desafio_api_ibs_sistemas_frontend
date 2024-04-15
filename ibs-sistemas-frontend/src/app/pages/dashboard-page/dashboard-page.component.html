@@ -16,10 +16,16 @@
         <p>{{ address.city }}</p>
         <span>{{ address.complement }}</span>
         <div>
-          <button (click)="handleDeleteAddress(address.id)">
-            Deletar Endereço
+          <button>
+            <mat-icon class="trash" (click)="handleDeleteAddress(address.id)">
+              delete
+            </mat-icon>
           </button>
-          <button (click)="handleEditAddress(address)">Editar endereço:</button>
+          <button>
+            <mat-icon (click)="handleEditAddress(address)" class="pencil"
+              >edit</mat-icon
+            >
+          </button>
         </div>
       </li>
     </ul>
