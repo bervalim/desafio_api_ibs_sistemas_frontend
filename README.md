@@ -12,7 +12,7 @@
   - Uso de pattern para o regex de senha, CEP e estados.
   - Consumo da API da ViaCep (Preenchimento automático dos campos de cidade,estado,rua e bairro.
   - Aplicação dos conceitos de autenticação e autorização.
-- sass para
+- Sass para
 estilização
 - Aplicação dos conceitos de FormGroup.
 - Aplicação do conceito de efeitos.
